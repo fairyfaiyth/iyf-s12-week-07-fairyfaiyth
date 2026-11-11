@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Task 13.1</title>
+</head>
+<body>
+<h1>Task 13.1: localStorage</h1>
+<pre id="out"></pre>
+<script>
+const out = document.getElementById("out");
+function show(label, value) {
+    out.textContent += label + ": " + JSON.stringify(value) + "\n";
+}
+
+localStorage.setItem("username", "Amina");
+show("username", localStorage.getItem("username"));
+localStorage.removeItem("username");
+show("after remove", localStorage.getItem("username"));
+
+const user = { name: "Amina", age: 21, hobbies: ["coding", "reading"] };
+localStorage.setItem("user", user);
+show("WRONG (no JSON)", localStorage.getItem("user"));
+localStorage.setItem("user", JSON.stringify(user));
+show("RIGHT (parsed)", JSON.parse(localStorage.getItem("user")));
+</script>
+</body>
+</html>
