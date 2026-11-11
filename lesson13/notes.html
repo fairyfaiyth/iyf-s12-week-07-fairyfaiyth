@@ -1,70 +1,70 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Notes</title>
-</head>
-<body>
-<h1>My Notes</h1>
-<form id="note-form">
-    <input id="note-input" placeholder="Write a note..." required>
-    <button type="submit">Add</button>
-</form>
-<ul id="note-list"></ul>
-<script>
-const STORAGE_KEY = "notes";
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Notes</title>
+    </head>
+    <body>
+        <h1>My Notes</h1>
+        <form id="note-form">
+            <input id="note-input" placeholder="Write a note..." required />
+            <button type="submit">Add</button>
+        </form>
+        <ul id="note-list"></ul>
+        <script>
+            const STORAGE_KEY = "notes";
 
-function saveToStorage(key, data) {
-    localStorage.setItem(key, JSON.stringify(data));
-}
+            function saveToStorage(key, data) {
+                localStorage.setItem(key, JSON.stringify(data));
+            }
 
-function getFromStorage(key, defaultValue = null) {
-    const data = localStorage.getItem(key);
-    if (data === null) return defaultValue;
-    try {
-        return JSON.parse(data);
-    } catch {
-        return defaultValue;
-    }
-}
+            function getFromStorage(key, defaultValue = null) {
+                const data = localStorage.getItem(key);
+                if (data === null) return defaultValue;
+                try {
+                    return JSON.parse(data);
+                } catch {
+                    return defaultValue;
+                }
+            }
 
-let notes = getFromStorage(STORAGE_KEY, []);
-const form = document.getElementById("note-form");
-const input = document.getElementById("note-input");
-const list = document.getElementById("note-list");
+            let notes = getFromStorage(STORAGE_KEY, []);
+            const form = document.getElementById("note-form");
+            const input = document.getElementById("note-input");
+            const list = document.getElementById("note-list");
 
-function render() {
-    list.replaceChildren();
-    notes.forEach((note) => {
-        const li = document.createElement("li");
-        li.textContent = note.text + " ";
-        const del = document.createElement("button");
-        del.textContent = "Delete";
-        del.addEventListener("click", () => {
-            notes = notes.filter((n) => n.id !== note.id);
-            commit();
-        });
-        li.appendChild(del);
-        list.appendChild(li);
-    });
-}
+            function render() {
+                list.replaceChildren();
+                notes.forEach((note) => {
+                    const li = document.createElement("li");
+                    li.textContent = note.text + " ";
+                    const del = document.createElement("button");
+                    del.textContent = "Delete";
+                    del.addEventListener("click", () => {
+                        notes = notes.filter((n) => n.id !== note.id);
+                        commit();
+                    });
+                    li.appendChild(del);
+                    list.appendChild(li);
+                });
+            }
 
-function commit() {
-    saveToStorage(STORAGE_KEY, notes);
-    render();
-}
+            function commit() {
+                saveToStorage(STORAGE_KEY, notes);
+                render();
+            }
 
-form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const text = input.value.trim();
-    if (text === "") return;
-    notes = [...notes, { id: Date.now(), text }];
-    input.value = "";
-    commit();
-});
+            form.addEventListener("submit", (event) => {
+                event.preventDefault();
+                const text = input.value.trim();
+                if (text === "") return;
+                notes = [...notes, { id: Date.now(), text }];
+                input.value = "";
+                commit();
+            });
 
-render();
-</script>
-</body>
+            render();
+        </script>
+    </body>
 </html>

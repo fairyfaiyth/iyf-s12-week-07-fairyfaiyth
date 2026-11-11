@@ -1,32 +1,32 @@
 {
-  "name": "iyf-s12-week-07-fairyfaiyth",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "directories": {
-    "test": "tests"
-  },
-  "scripts": {
-    "test": "vitest run",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "format": "prettier --write \"**/*.{js,html,css,json}\""
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/fairyfaiyth/iyf-s12-week-07-fairyfaiyth.git"
-  },
-  "keywords": [],
-  "type": "module",
-  "bugs": {
-    "url": "https://github.com/fairyfaiyth/iyf-s12-week-07-fairyfaiyth/issues"
-  },
-  "homepage": "https://github.com/fairyfaiyth/iyf-s12-week-07-fairyfaiyth#readme",
-  "devDependencies": {
-    "@eslint/js": "^10.0.1",
-    "eslint": "^10.14.0",
-    "globals": "^17.14.0",
-    "prettier": "^3.10.0",
-    "vitest": "^5.1.0"
-  }
+    "name": "iyf-s12-week-07-fairyfaiyth",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "directories": {
+        "test": "tests"
+    },
+    "scripts": {
+        "test": "vitest run",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix",
+        "format": "prettier --write \"**/*.{js,html,css,json}\""
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/fairyfaiyth/iyf-s12-week-07-fairyfaiyth.git"
+    },
+    "keywords": [],
+    "type": "module",
+    "bugs": {
+        "url": "https://github.com/fairyfaiyth/iyf-s12-week-07-fairyfaiyth/issues"
+    },
+    "homepage": "https://github.com/fairyfaiyth/iyf-s12-week-07-fairyfaiyth#readme",
+    "devDependencies": {
+        "@eslint/js": "^10.0.1",
+        "eslint": "^10.14.0",
+        "globals": "^17.14.0",
+        "prettier": "^3.10.0",
+        "vitest": "^5.1.0"
+    }
 }
