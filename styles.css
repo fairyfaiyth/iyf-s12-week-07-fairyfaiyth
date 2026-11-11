@@ -1,0 +1,63 @@
+* { box-sizing: border-box; }
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f8;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 480px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 { text-align: center; margin-top: 0; }
+
+#todo-form { display: flex; gap: 8px; }
+#todo-input { flex: 1; padding: 10px; font-size: 1rem; }
+button { cursor: pointer; padding: 8px 12px; border: none; border-radius: 6px; }
+#todo-form button { background: #4a6cf7; color: white; }
+
+.filters { display: flex; gap: 6px; margin: 15px 0; justify-content: center; }
+.filter { background: #e5e5ee; }
+.filter.active { background: #4a6cf7; color: white; }
+
+#todo-list { list-style: none; padding: 0; margin: 0; }
+
+#todo-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+#todo-list li.completed span {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.delete-btn { background: #e74c3c; color: white; opacity: 0; transition: opacity 0.2s; }
+#todo-list li:hover .delete-btn { opacity: 1; }
+
+/* Phones have no hover, so always show the delete button there */
+@media (hover: none) {
+    .delete-btn { opacity: 1; }
+}
+
+.edit-input { flex: 1; padding: 6px; font-size: 1rem; margin-right: 8px; }
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    color: #555;
+}
+#clear-completed { background: #e5e5ee; }
