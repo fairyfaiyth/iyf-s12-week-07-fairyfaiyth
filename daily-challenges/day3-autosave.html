@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day 3: Form Auto-Save</title>
+</head>
+<body>
+<h1>Auto-Save Form</h1>
+<form id="profile-form">
+    <p><input name="name" placeholder="Name"></p>
+    <p><input name="email" placeholder="Email"></p>
+    <p><textarea name="bio" placeholder="About you"></textarea></p>
+    <button type="submit">Submit</button>
+</form>
+<p id="status"></p>
+<script>
+const DRAFT_KEY = "profileDraft";
+const SAVE_INTERVAL_MS = 5000;
+
+const form = document.getElementById("profile-form");
+const status = document.getElementById("status");
+const fields = form.querySelectorAll("input, textarea");
+
+function collectDraft() {
+    const draft = {};
+    fields.forEach((field) => {
+        draft[field.name] = field.value;
+    });
+    return draft;
+}
+
+function saveDraft() {
+    localStorage.setItem(DRAFT_KEY, JSON.stringify(collectDraft()));
+    status.textContent = "Draft saved at " + new Date().toLocaleTimeString();
+}
+
+function restoreDraft() {
+    try {
+        const draft = JSON.parse(localStorage.getItem(DRAFT_KEY));
+        if (!draft) {
+            return;
+        }
+        fields.forEach((field) => {
+            field.value = draft[field.name] || "";
+        });
+        status.textContent = "Recovered your draft.";
+    } catch {
+        localStorage.removeItem(DRAFT_KEY);
+    }
+}
+
+restoreDraft();
+const timerId = setInterval(saveDraft, SAVE_INTERVAL_MS);
+
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    clearInterval(timerId);
+    localStorage.removeItem(DRAFT_KEY);
+    form.reset();
+    status.textContent = "Submitted! Draft cleared.";
+});
+</script>
+</body>
+</html>
