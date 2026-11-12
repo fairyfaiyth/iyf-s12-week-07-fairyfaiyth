@@ -40,3 +40,6 @@ Setting up npm and Vitest in Termux, fixing ESLint errors about the `API_KEY` gl
 - **PR I reviewed:** (add the link after I review a classmate's PR)
 - **Review I wrote:** (add the link to my inline comment)
 - **Who reviewed mine:** (add after someone reviews it)
+
+## Live Demo
+[View Live Demo](https://fairyfaiyth.github.io/iyf-s12-week-07-fairyfaiyth/)
