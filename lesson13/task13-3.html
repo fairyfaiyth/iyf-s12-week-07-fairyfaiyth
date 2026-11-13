@@ -1,41 +1,41 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Task 13.3</title>
-</head>
-<body>
-<h1>Contact Form (auto-saves)</h1>
-<form id="contact-form">
-    <p><input name="name" placeholder="Name"></p>
-    <p><input name="email" placeholder="Email"></p>
-    <p><input name="message" placeholder="Message"></p>
-    <button type="submit">Send</button>
-</form>
-<p id="status"></p>
-<script>
-const form = document.getElementById("contact-form");
-const inputs = form.querySelectorAll("input");
-const status = document.getElementById("status");
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Task 13.3</title>
+    </head>
+    <body>
+        <h1>Contact Form (auto-saves)</h1>
+        <form id="contact-form">
+            <p><input name="name" placeholder="Name" /></p>
+            <p><input name="email" placeholder="Email" /></p>
+            <p><input name="message" placeholder="Message" /></p>
+            <button type="submit">Send</button>
+        </form>
+        <p id="status"></p>
+        <script>
+            const form = document.getElementById("contact-form");
+            const inputs = form.querySelectorAll("input");
+            const status = document.getElementById("status");
 
-inputs.forEach((input) => {
-    const saved = sessionStorage.getItem("form_" + input.name);
-    if (saved) {
-        input.value = saved;
-        status.textContent = "Recovered your draft.";
-    }
-    input.addEventListener("input", () => {
-        sessionStorage.setItem("form_" + input.name, input.value);
-    });
-});
+            inputs.forEach((input) => {
+                const saved = sessionStorage.getItem("form_" + input.name);
+                if (saved) {
+                    input.value = saved;
+                    status.textContent = "Recovered your draft.";
+                }
+                input.addEventListener("input", () => {
+                    sessionStorage.setItem("form_" + input.name, input.value);
+                });
+            });
 
-form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    inputs.forEach((input) => sessionStorage.removeItem("form_" + input.name));
-    form.reset();
-    status.textContent = "Sent! Draft cleared.";
-});
-</script>
-</body>
+            form.addEventListener("submit", (event) => {
+                event.preventDefault();
+                inputs.forEach((input) => sessionStorage.removeItem("form_" + input.name));
+                form.reset();
+                status.textContent = "Sent! Draft cleared.";
+            });
+        </script>
+    </body>
 </html>

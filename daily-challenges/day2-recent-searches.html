@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day 2: Recent Searches</title>
+</head>
+<body>
+<h1>Recent Searches</h1>
+<form id="search-form">
+    <input id="search-input" list="history" placeholder="Search..." autocomplete="off">
+    <datalist id="history"></datalist>
+    <button type="submit">Search</button>
+</form>
+<h3>History</h3>
+<ul id="history-list"></ul>
+<p id="result"></p>
+<script>
+const KEY = "recentSearches";
+const MAX_RECENT = 5;
+
+const form = document.getElementById("search-form");
+const input = document.getElementById("search-input");
+const datalist = document.getElementById("history");
+const historyList = document.getElementById("history-list");
+const result = document.getElementById("result");
+
+function loadRecent() {
+    try {
+        const saved = JSON.parse(localStorage.getItem(KEY));
+        return Array.isArray(saved) ? saved : [];
+    } catch {
+        return [];
+    }
+}
+
+function saveSearch(term) {
+    const updated = [term, ...loadRecent().filter((t) => t !== term)].slice(0, MAX_RECENT);
+    localStorage.setItem(KEY, JSON.stringify(updated));
+}
+
+function runSearch(term) {
+    result.textContent = `Searching for: ${term}`;
+    saveSearch(term);
+    renderHistory();
+}
+
+function renderHistory() {
+    datalist.replaceChildren();
+    historyList.replaceChildren();
+    loadRecent().forEach((term) => {
+        const option = document.createElement("option");
+        option.value = term;
+        datalist.appendChild(option);
+
+        const li = document.createElement("li");
+        li.textContent = term;
+        li.style.cursor = "pointer";
+        li.addEventListener("click", () => {
+            input.value = term;
+            runSearch(term);
+        });
+        historyList.appendChild(li);
+    });
+}
+
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const term = input.value.trim();
+    if (term === "") {
+        return;
+    }
+    runSearch(term);
+});
+
+renderHistory();
+</script>
+</body>
+</html>
