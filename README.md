@@ -37,9 +37,8 @@ Setting up npm and Vitest in Termux, fixing ESLint errors about the `API_KEY` gl
 
 ## Collaboration
 - **My PR:** https://github.com/fairyfaiyth/iyf-s12-week-07-fairyfaiyth/pull/1
-- **PR I reviewed:** (add the link after I review a classmate's PR)
-- **Review I wrote:** (add the link to my inline comment)
-- **Who reviewed mine:** (add after someone reviews it)
+- **PR I reviewed:** https://github.com/Wesala-crypto/iyf-s12-week-07-wesala-crypto/pull/1
+- **Who reviewed mine:** @Wesala-crypto
 
 ## Live Demo
 [View Live Demo](https://fairyfaiyth.github.io/iyf-s12-week-07-fairyfaiyth/)
